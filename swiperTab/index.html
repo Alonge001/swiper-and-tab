@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Swiper移动端左右滑动页面切换标签</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+		<link rel="stylesheet" href="css/swiper.min.css">
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			#tabs-container {
+				height: 400px;
+			}
+			
+			.tabs {
+				border-top: 2px solid #9ac7ed;
+				border-bottom: 2px solid #9ac7ed;
+				background: #f9fafa;
+				background-size: auto 100%;
+				width: 100%;
+				height: 38px;
+				overflow: hidden;
+				display: flex;
+			}
+			
+			.tabs a {
+				font-size: 1.125em;
+				font-weight: normal;
+				text-align: center;
+				width: 80px;
+				height: 38px;
+				line-height: 38px;
+				color: #2a70be;
+			}
+			
+			.active {
+				border-top: 2px solid #2a70be;
+				margin-top: 2px solid #2a70be;
+				background: lightgreen;
+				color: #c14545;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="tabs">
+			<a href="###" class="active">新闻</a>
+			<a href="###">社会</a>
+			<a href="###">军事</a>
+		</div>
+		<div id="tabs-container" class="swiper-container">
+
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="slide1">
+将进酒<br />
+
+朝代：唐代<br />
+作者：李白<br />
+
+君不见，黄河之水天上来，奔流到海不复回。<br />
+君不见，高堂明镜悲白发，朝如青丝暮成雪。<br />
+人生得意须尽欢，莫使金樽空对月。<br />
+天生我材必有用，千金散尽还复来。<br />
+烹羊宰牛且为乐，会须一饮三百杯。<br />
+岑夫子，丹丘生，将进酒，杯莫停。<br />
+与君歌一曲，请君为我倾耳听。<br />
+钟鼓馔玉不足贵，但愿长醉不复醒。<br />
+古来圣贤皆寂寞，惟有饮者留其名。<br />
+陈王昔时宴平乐，斗酒十千恣欢谑。<br />
+主人何为言少钱，径须沽取对君酌。<br />
+五花马，千金裘，呼儿将出换美酒，与尔同销万古愁。<br />
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="slide2">
+春望<br />
+
+朝代：唐代<br />
+作者：杜甫<br />
+
+国破山河在，城春草木深。<br />
+感时花溅泪，恨别鸟惊心。<br />
+烽火连三月，家书抵万金。<br />
+白头搔更短，浑欲不胜簪。<br />
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="slide3">
+钱塘湖春行<br />
+
+朝代：唐代<br />
+作者：白居易<br />
+
+孤山寺北贾亭西，水面初平云脚低。<br />
+几处早莺争暖树，谁家新燕啄春泥。<br />
+乱花渐欲迷人眼，浅草才能没马蹄。<br />
+最爱湖东行不足，绿杨阴里白沙堤。
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			window.onload = function() {
+				var tabsSwiper = new Swiper('#tabs-container', {
+					speed: 500,
+					onSlideChangeStart: function(e) {
+						$(".tabs .active").removeClass('active')
+						$(".tabs a").eq(tabsSwiper.activeIndex).addClass('active')
+					}
+				});
+				$(".tabs a").on('touchstart mousedown', function(e) {
+					e.preventDefault()
+					$(".tabs .active").removeClass('active')
+					$(this).addClass('active')
+					tabsSwiper.slideTo($(this).index())
+				});
+				$(".tabs a").click(function(e) {
+					e.preventDefault()
+				})
+			}
+		</script>
+	</body>
+
+</html>
